@@ -60,13 +60,13 @@ dsh plugin --profile desktop add -w /path/to/dsh-wechat-skin
 
 ```sh
 # regenerate the avatar pool (80 female + 20 male from randomuser.me)
-node scripts/download-avatars.js
+node scripts/download-avatars.cjs
 
 # rebuild lib/client.js (inject avatars.json + src/wechat-skin.css)
-node scripts/build.js
+node scripts/build.cjs
 ```
 
-Edit `src/wechat-skin.css`, run `node scripts/build.js`, then hard-refresh DSH (`Ctrl+F5`).
+Edit `src/wechat-skin.css`, run `node scripts/build.cjs`, then hard-refresh DSH (`Ctrl+F5`).
 
 ---
 
