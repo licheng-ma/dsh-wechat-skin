@@ -11,6 +11,10 @@ A skin for **DeepSeek Harness (DSH)** that gives the UI the look and feel of
 
 [中文](./README.md)
 
+## 📸 Preview
+
+![preview](docs/preview.png)
+
 ---
 
 ## ✨ Features
