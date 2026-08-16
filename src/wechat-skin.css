@@ -1,0 +1,426 @@
+/* dsh-wechat-skin structural stylesheet — v4.
+   Every rule is gated by body.dsh-wechat-skin-on (toggled by the plugin only
+   while the resolved theme is light); selectors raise specificity over the
+   shipped hashed-class rules. Kept in sync with WECHAT_CSS in lib/client.js. */
+
+/* ---- token overrides ---- */
+body.dsh-wechat-skin-on {
+  --dsw-alias-state-business-primary: #07c160 !important;
+  --dsw-alias-state-business-tertiary: #e8f7ee !important;
+  --dsw-alias-state-success-primary: #07c160 !important;
+  --dsw-alias-button-info-fill: #07c160 !important;
+  --dsw-alias-button-info-hover: #06ad56 !important;
+  --dsw-alias-brand-primary: #07c160 !important;
+  --dsw-alias-brand-text: #ffffff !important;
+  --dsw-alias-interactive-bg-hover: rgba(0, 0, 0, 0.05) !important;
+  --dsw-alias-interactive-bg-active: rgba(0, 0, 0, 0.08) !important;
+  --dsw-alias-interactive-bg-hover-accent: rgba(7, 193, 96, 0.10) !important;
+  --dsw-specific-sidebar-fill: #e6e6e8 !important;
+  --dsw-specific-bubble: #95ec69 !important;
+  --dsw-alias-bg-module-platform: #f2f2f2 !important;
+  --dsw-alias-bg-overlay: #ffffff !important;
+  --dsw-alias-scrollbar-bg-l1: #e1e1e1 !important;
+  --dsw-alias-scrollbar-bg-l2: #e1e1e1 !important;
+  --dsw-alias-scrollbar-hover-l1: #cccccc !important;
+  --dsw-alias-scrollbar-hover-l2: #cccccc !important;
+}
+
+/* ---- chat wallpaper: WeChat flat light gray (#F8F8F8) ---- */
+body.dsh-wechat-skin-on .Md3f7G_scroll {
+  background-color: #f8f8f8;
+}
+/* v5: message column spans the same width as the full-width input box,
+   so avatars align to the input box's left/right edges. */
+body.dsh-wechat-skin-on .Md3f7G_scroll {
+  padding: 16px 8px;
+}
+body.dsh-wechat-skin-on .Md3f7G_column {
+  max-width: none;
+  width: 100%;
+}
+
+/* ---- WeChat font + unified 15px text ---- */
+body.dsh-wechat-skin-on .Md3f7G_column,
+body.dsh-wechat-skin-on .Sxvs8a_root,
+body.dsh-wechat-skin-on .gdEzaW_bubble,
+body.dsh-wechat-skin-on .YDXeBa_sessionRow {
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+}
+
+/* ---- WeChat-style time divider ---- */
+body.dsh-wechat-skin-on .FJxK0a_root {
+  color: #b2b2b2;
+  font-size: 11px;
+}
+
+/* ================= message bubbles + avatars ================= */
+
+/* user bubble: right-aligned WeChat green, 8px radius + tail */
+body.dsh-wechat-skin-on .gdEzaW_userRow .gdEzaW_bubble {
+  background: #95ec69;
+  color: #101010;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: calc(15px * var(--dsh-wechat-font-scale, 1));
+  font-weight: 400;
+  line-height: calc(23px * var(--dsh-wechat-font-scale, 1));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+body.dsh-wechat-skin-on .gdEzaW_userRow .gdEzaW_bubble::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  right: -7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  border-color: transparent transparent transparent #95ec69;
+}
+
+/* user message avatar (right side) */
+body.dsh-wechat-skin-on [data-chat-flow-kind="user"],
+body.dsh-wechat-skin-on [data-chat-flow-kind="steering"] {
+  position: relative;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="user"] .gdEzaW_userRow,
+body.dsh-wechat-skin-on [data-chat-flow-kind="steering"] .gdEzaW_userRow {
+  margin-right: 48px;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="user"]::after,
+body.dsh-wechat-skin-on [data-chat-flow-kind="steering"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background-image: var(--dsh-user-avatar, linear-gradient(135deg, #ffb37b, #f97316));
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* assistant message: left-aligned white bubble, 8px radius + tail */
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+  width: fit-content;
+  max-width: min(82%, 620px);
+  position: relative;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 7px 6px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+/* assistant message avatar (left side) */
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] {
+  position: relative;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root {
+  margin-left: 48px;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background-image: var(--dsh-assistant-avatar, linear-gradient(135deg, #6db7ff, #3b82f6));
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_actions {
+  margin-left: -2px;
+}
+
+/* ---- v5: flatten ALL assistant text to 15px regular (no bold, no size diff) ---- */
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root,
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root * {
+  font-weight: 400 !important;
+  font-size: calc(15px * var(--dsh-wechat-font-scale, 1)) !important;
+  line-height: calc(24px * var(--dsh-wechat-font-scale, 1)) !important;
+  text-align: left;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root pre,
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root code,
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root kbd,
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .Sxvs8a_root samp {
+  font-family: var(--ds-font-family-code, Consolas, monospace) !important;
+  font-size: calc(13px * var(--dsh-wechat-font-scale, 1)) !important;
+  font-weight: 400 !important;
+}
+
+/* reasoning rows INSIDE the assistant bubble: quiet gray pill */
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .QWLzlG_root {
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .QWLzlG_summary,
+body.dsh-wechat-skin-on [data-chat-flow-kind="assistant-step"] .QWLzlG_thinkBody {
+  font-size: 12px !important;
+}
+
+/* command / tool-call rows: soft translucent chips */
+body.dsh-wechat-skin-on [data-chat-flow-kind="command"] ._Xvjua_root {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding: 2px 10px;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="tool-call"] .ztWv_q_callRow {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+body.dsh-wechat-skin-on [data-chat-flow-kind="tool-call"] .o3BgMG_row,
+body.dsh-wechat-skin-on [data-chat-flow-kind="tool-call"] .o3BgMG_summary {
+  font-size: 12px;
+}
+
+/* ================= header ================= */
+body.dsh-wechat-skin-on .wSkVaW_header {
+  background: #ffffff;
+  padding-top: 14px;
+}
+body.dsh-wechat-skin-on .wSkVaW_tab {
+  font-size: 13px;
+}
+body.dsh-wechat-skin-on .wSkVaW_headerActions {
+  opacity: 0.85;
+  font-size: 12px;
+}
+
+/* ================= hero (new conversation): default DSH look (starfield reverted) ================= */
+
+/* ================= composer (WeChat full-width bordered rounded input) ================= */
+body.dsh-wechat-skin-on .uV2eYG_root {
+  padding: 0;
+}
+body.dsh-wechat-skin-on .uV2eYG_card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: none;
+  max-width: none;
+  width: calc(100% - 16px);
+  margin: 0 8px 8px;
+}
+body.dsh-wechat-skin-on .uV2eYG_card .uV2eYG_scroll {
+  flex: 1;
+}
+/* subtle drag grip at the card bottom edge */
+body.dsh-wechat-skin-on .uV2eYG_card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+body.dsh-wechat-skin-on .uV2eYG_add {
+  background: #f2f2f2;
+}
+body.dsh-wechat-skin-on .uV2eYG_select {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+}
+/* send button: WeChat rectangle with 发送 text (gray empty / green with text) */
+body.dsh-wechat-skin-on .uV2eYG_primary {
+  width: auto;
+  height: 30px;
+  min-width: 68px;
+  padding: 0 16px;
+  border-radius: 5px;
+  transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #9b9b9b;
+  font-size: 14px;
+}
+body.dsh-wechat-skin-on .uV2eYG_primary::after {
+  content: "发送";
+}
+body.dsh-wechat-skin-on .uV2eYG_primary svg {
+  display: none;
+}
+body.dsh-wechat-skin-on .uV2eYG_card:has(.uV2eYG_input:not(:placeholder-shown)) .uV2eYG_primary {
+  background: #07c160;
+  color: #ffffff;
+}
+body.dsh-wechat-skin-on .uV2eYG_card:has(.uV2eYG_input:not(:placeholder-shown)) .uV2eYG_primary:hover {
+  background: #06ad56;
+}
+
+/* ================= sidebar: WeChat conversation list ================= */
+body.dsh-wechat-skin-on .hHd-Xa_root {
+  background: #e6e6e8;
+}
+body.dsh-wechat-skin-on .hHd-Xa_newSession {
+  border-radius: 8px;
+  border-color: transparent;
+  background: #ffffff;
+}
+
+/* session rows: two-line rows, 40px rounded-square photo avatars (aligned) */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow {
+  height: auto;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 2px 10px;
+  margin: 1px 0;
+  flex-wrap: wrap;
+  position: relative;
+  align-content: center;
+}
+body.dsh-wechat-skin-on .YDXeBa_sessionRow:hover {
+  background: rgba(0, 0, 0, 0.045);
+}
+/* avatar: rounded-square photo (assigned per row via --dsh-avatar), 40px */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow .YDXeBa_slot {
+  order: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background-image: var(--dsh-avatar, linear-gradient(145deg, #58c98e, #2fae6d));
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  flex: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+body.dsh-wechat-skin-on .YDXeBa_sessionRow .YDXeBa_slot svg {
+  display: none;
+}
+/* name on line 1: smaller + regular (no bold, per v5) */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow .YDXeBa_title {
+  order: 2;
+  flex: 1;
+  min-width: 0;
+  font-size: calc(15px * var(--dsh-wechat-font-scale, 1));
+  font-weight: 400;
+  line-height: 18px;
+  color: #191919;
+}
+/* time: smaller + lighter, top-right */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow .YDXeBa_time {
+  order: 3;
+  font-size: 10px;
+  line-height: 18px;
+  color: #b2b2b2;
+}
+/* status dot */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow .YDXeBa_dot {
+  order: 4;
+}
+/* subtitle line 2: filled by the plugin via data-dsh-subtitle */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow::after {
+  content: attr(data-dsh-subtitle);
+  order: 5;
+  width: 100%;
+  padding-left: 46px;
+  font-size: calc(11px * var(--dsh-wechat-font-scale, 1));
+  line-height: 14px;
+  color: #9f9fa6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.dsh-wechat-skin-on .YDXeBa_sessionRow:not([data-dsh-subtitle])::after {
+  display: none;
+}
+/* hover actions stay overlaid top-right */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow:hover .YDXeBa_rowActions {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* selected row: solid WeChat green (#15AC70) + white text */
+body.dsh-wechat-skin-on .YDXeBa_sessionRow.YDXeBa_selected,
+body.dsh-wechat-skin-on .YDXeBa_sessionRow.YDXeBa_selected:hover {
+  background: #15ac70;
+}
+body.dsh-wechat-skin-on .YDXeBa_sessionRow.YDXeBa_selected .YDXeBa_title,
+body.dsh-wechat-skin-on .YDXeBa_sessionRow.YDXeBa_selected .YDXeBa_time,
+body.dsh-wechat-skin-on .YDXeBa_sessionRow.YDXeBa_selected::after {
+  color: #ffffff;
+}
+
+/* ================= far-left gray rail (injected by the plugin) ================= */
+body.dsh-wechat-skin-on .pI_x6G_frame {
+  margin-left: 56px;
+}
+#dsh-wechat-rail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  z-index: 60;
+  background: #dedee4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 6px;
+  overflow-y: auto;
+}
+#dsh-wechat-rail .dsh-rail-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-image: var(--dsh-user-avatar, linear-gradient(135deg, #ffb37b, #f97316));
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  margin-bottom: 6px;
+}
+#dsh-wechat-rail .dsh-rail-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  line-height: 1;
+  color: #555555;
+  background: transparent;
+}
+#dsh-wechat-rail .dsh-rail-btn:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+#dsh-wechat-rail .dsh-rail-btn:active {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ---- details panel: keep white ---- */
+body.dsh-wechat-skin-on .ydkMvW_root {
+  background: #ffffff;
+}
