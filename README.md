@@ -8,6 +8,10 @@
 
 [English](./README.en.md)
 
+## 📸 预览
+
+![preview](docs/preview.png)
+
 ---
 
 ## ✨ 功能一览
