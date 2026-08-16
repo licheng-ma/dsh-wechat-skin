@@ -82,13 +82,13 @@ dsh-wechat-skin/
 
 ```sh
 # 重新生成头像池（80 女 + 20 男，来自 randomuser.me）
-node scripts/download-avatars.js
+node scripts/download-avatars.cjs
 
 # 重新构建 lib/client.js（把 avatars.json + src/wechat-skin.css 注入）
-node scripts/build.js
+node scripts/build.cjs
 ```
 
-改样式：编辑 `src/wechat-skin.css` 后运行 `node scripts/build.js`，再刷新 DSH 页面（`Ctrl+F5`）即可。
+改样式：编辑 `src/wechat-skin.css` 后运行 `node scripts/build.cjs`，再刷新 DSH 页面（`Ctrl+F5`）即可。
 
 ---
 
